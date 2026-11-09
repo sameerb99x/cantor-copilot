@@ -1,12 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="locked">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cantor · Financial copilot prototype</title>
 <link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="styles.css">
+<script defer src="login.js"></script>
 <script defer src="app.js"></script>
 </head>
 <body>
+<form id="passwordGate" class="password-gate" aria-labelledby="gateTitle">
+  <div class="password-card">
+    <h1 id="gateTitle">Cantor prototype</h1>
+    <p>Enter the shared password to view this prototype.</p>
+    <label for="sitePassword">Password</label>
+    <input id="sitePassword" type="password" autocomplete="current-password" required>
+    <p id="passwordError" role="alert" hidden>Incorrect password. Try again.</p>
+    <button type="submit">Continue</button>
+  </div>
+</form>
 <a class="skip" href="#main">Skip to financial workspace</a>
 <div class="shell">
 <header class="brand-header" aria-label="Cantor workspace">
