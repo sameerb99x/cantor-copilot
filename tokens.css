@@ -1,0 +1,47 @@
+/* Observed Cantor primitives, extracted 2026-11-03; proposed semantic additions are noted. */
+:root {
+  --color-brand: #00263a;
+  --color-brand-muted: #425563;
+  --color-text: #212529;
+  --color-text-muted: #595959;
+  --color-surface: #fff;
+  --color-menu: #f1eee8;
+  --color-header: #efe2cd; /* observed original logo banner pixel RGB 239,226,205 */
+  --color-table-head: #cdd3db;
+  --color-table-alt: #f3f5fa;
+  --color-selected: rgba(0,38,58,.08);
+  --color-border: #d4d8da; /* proposed neutral divider */
+  --color-attention-bg: #fbf5e8; /* proposed copilot state */
+  --color-attention-text: #705017;
+  --color-danger: #9b3431; /* proposed accessible error */
+  --color-danger-bg: #fbefee;
+  --color-success: #276344; /* proposed variance/evidence feedback */
+  --color-success-bg: #edf5ef;
+  --color-focus: #007d98; /* proposed visible keyboard focus */
+  --shadow-menu: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px rgba(0,0,0,.14),0 1px 10px rgba(0,0,0,.12);
+  --shadow-button: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px rgba(0,0,0,.14),0 1px 5px rgba(0,0,0,.12);
+  --font-body: 'Trebuchet MS',Helvetica,sans-serif;
+  --font-control: Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-base: 16px;
+  --font-compact: 12.8px;
+  --font-report: 11px;
+  --font-title: 20px;
+  --font-small: 11px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --content-max: 1200px;
+  --header-height: 80px;
+  --radius-control: 4px;
+  --radius-round: 50%;
+  --table-padding: 4.8px;
+  --control-height: 28px;
+  --menu-width: 230px;
+  --menu-height: 256px;
+  --menu-row-height: 24px;
+}

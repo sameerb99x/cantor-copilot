@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cantor · Financial copilot prototype</title>
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="styles.css">
+<script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to financial workspace</a>
+<div class="shell">
+<header class="brand-header" aria-label="Cantor workspace">
+  <a href="#dashboard" class="brand-link" aria-label="Cantor dashboard"></a>
+  <div class="header-actions"><button class="icon-button" id="helpButton" aria-label="About this prototype"><span class="material-icons" aria-hidden="true">help_outline</span></button><button class="icon-button" id="openCopilot" aria-label="Open financial copilot"><img src="assets/comment.svg" alt=""></button></div>
+  <div class="context-controls">
+    <label><span class="sr-only">Company</span><select id="company"><option>Demo Group AS</option><option>Demo Services AS</option></select></label>
+    <label><span class="sr-only">Financial year</span><select id="year"><option>2026</option><option>2025</option></select></label>
+    <label><span class="sr-only">Reporting period</span><select id="period"><option value="Sep/Oct">Sep/Oct</option><option value="Jul/Aug">Jul/Aug</option></select></label>
+    <span class="context-static">No decimals</span>
+    <label><span class="sr-only">Currency</span><select id="currency"><option>NOK</option><option>EUR</option></select></label>
+    <span class="context-static">English</span>
+  </div>
+</header>
+<div class="prototype-bar"><span>Prototype · Illustrative data</span><nav aria-label="Workspace"><a id="navDashboard" href="#dashboard">Dashboard</a><a id="navReports" href="#reports">Reports</a></nav></div>
+<main id="main" tabindex="-1">
+<div id="contextNotice" class="notice" role="status" hidden></div>
+<section id="dashboardView" aria-label="Dashboard">
+  <div class="dashboard-grid">
+    <section class="widget"><div class="widget-heading"><h1>Earnings</h1><span class="subtle">Year to date</span></div><div id="earningsWidget" class="table-scroll"></div><div class="widget-footer"><button data-report="940" class="nav-link">Income report <span aria-hidden="true">→</span></button><button data-ask="profit" class="nav-link">Explain the movement <span aria-hidden="true">↗</span></button></div></section>
+    <section class="widget"><div class="widget-heading"><h2>Balance sheet</h2><span class="subtle">Reporting date</span></div><div id="balanceWidget" class="table-scroll"></div><div class="widget-footer"><button data-report="941" class="nav-link">Balance report <span aria-hidden="true">→</span></button></div></section>
+    <section class="widget"><div class="widget-heading"><h2>Key figures</h2></div><div id="keyFiguresWidget" class="table-scroll"></div><div class="widget-footer"><span class="subtle">Based on the illustrative income report</span></div></section>
+    <section class="widget"><div class="widget-heading"><h2>Operating profit</h2><span class="subtle">This year / last year</span></div><div id="profitChart"></div><div class="widget-footer"><button data-ask="profit" class="nav-link">Investigate the change <span aria-hidden="true">↗</span></button></div></section>
+  </div>
+  <section class="dashboard-next"><div><h2>A question behind the numbers?</h2><p>Start with a figure. Compare it, investigate the movement, and see the evidence.</p></div><button class="button" data-ask="profit">Ask Cantor</button></section>
+</section>
+<section id="reportView" hidden aria-labelledby="reportTitle">
+  <div class="report-toolbar"><div class="updated">Illustrative reporting snapshot · <span id="snapshotLabel"></span></div><div class="report-actions">
+    <div class="report-picker"><button id="reportTrigger" class="report-trigger" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="reportOptions">01 Resultatrapport<span aria-hidden="true">⌄</span></button><div id="reportOptions" role="listbox" aria-label="Reports" tabindex="-1" hidden></div></div>
+    <button class="button" id="pdfButton">PDF</button><button class="button" id="csvButton">Excel</button><button class="button" id="dimButton" aria-expanded="false">Dim</button><button class="button copilot-toggle" id="showCopilot">Ask Cantor</button>
+  </div></div>
+  <div id="dimensionBar" class="dimension-bar" hidden><label>Dimension <select id="dimension"><option>All departments</option><option>Operations</option></select></label><span class="subtle">Illustrative department view</span></div>
+  <div class="report-heading"><h1 id="reportTitle">Income statement</h1><span id="reportScope" class="subtle"></span></div>
+  <div class="report-workspace" id="reportWorkspace">
+    <section class="financial-report" aria-label="Financial report"><div class="table-scroll report-scroll" id="reportTable" tabindex="0" aria-label="Financial report table; scroll horizontally on small screens"></div><div id="reportHint" class="report-hint"></div></section>
+    <aside class="copilot" id="copilot" aria-labelledby="copilotTitle">
+      <div class="copilot-heading"><div><div class="eyebrow">FINANCIAL ASSISTANT</div><h2 id="copilotTitle">Ask Cantor</h2></div><button id="closeCopilot" class="icon-button" aria-label="Close financial copilot">×</button></div>
+      <div id="copilotContext" class="copilot-context"></div>
+      <div class="conversation" id="conversation" aria-live="polite" aria-relevant="additions text"></div>
+      <div class="suggestions" id="suggestions"><button data-query="Explain the operating profit movement">Explain profit</button><button data-query="Compare with last year">Compare last year</button><button data-query="Investigate the largest expense movement">Investigate expenses</button></div>
+      <form id="questionForm" class="composer"><label class="sr-only" for="question">Ask a financial question</label><textarea id="question" rows="2" placeholder="Ask about this report…"></textarea><div><span class="subtle" id="questionHint">Answers refer to this reporting context.</span><button type="button" class="button secondary" id="cancelButton" hidden>Cancel</button><button class="button" id="sendButton" type="submit">Ask <span aria-hidden="true">↑</span></button></div></form>
+      <div class="demo-controls"><label for="demoState">Explore a state</label><select id="demoState"><option value="idle">Ready</option><option value="loading">Loading</option><option value="error">Retrieval error</option><option value="attention">Budget unavailable</option><option value="denied">Access unavailable</option><option value="empty">Empty report</option><option value="zero">Zero comparison baseline</option></select><button id="resetDemo" class="text-button">Reset</button></div>
+    </aside>
+  </div>
+</section>
+</main>
+<footer class="page-footer"><span>Cantor · Financial reporting</span><span>Illustrative prototype · No live connection</span></footer>
+</div>
+<dialog id="aboutDialog"><div class="dialog-heading"><h2>About this prototype</h2><button class="icon-button" id="closeAbout" aria-label="Close">×</button></div><p>This local prototype explores a financial copilot using Cantor's existing visual language. All companies and financial figures are illustrative.</p><p>Try Reports → 01 Resultatrapport → Explain profit. The report dropdown reproduces the catalogue labels; only representative views contain demo figures.</p><button class="button" id="aboutDone">Continue</button></dialog>
+<div id="toast" role="status" hidden></div>
+</body></html>
